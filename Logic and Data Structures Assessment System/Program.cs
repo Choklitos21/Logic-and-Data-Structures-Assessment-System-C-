@@ -31,6 +31,7 @@ void StartMenu()
                 AddingTwoNumbers();
                 break;
             case "2":
+                AverageGrade();
                 break;
             case "3":
                 break;
@@ -86,8 +87,63 @@ void AddingTwoNumbers()
         Thread.Sleep(3000); 
         return;
     }
-    Console.WriteLine($"The sum of them is {num1 + num2}");
+    Console.WriteLine($"\nThe sum of them is {num1 + num2}");
+    Thread.Sleep(3000); 
 }
 
+
+void AverageGrade()
+{
+    double num1;
+    double num2;
+    double num3;
+    
+    Console.Write("\nType the first grade: ");
+    string? input1 = Console.ReadLine();
+    
+    Console.Write("\nType the second grade: ");
+    string? input2 = Console.ReadLine();
+    
+    Console.Write("\nType the third grade: ");
+    string? input3 = Console.ReadLine();
+    
+    if (string.IsNullOrEmpty(input1) || string.IsNullOrEmpty(input2) || string.IsNullOrEmpty(input3))
+    {
+        Console.WriteLine("\n++++++++++Cannot be empty, try again++++++++++");
+        Thread.Sleep(3000); 
+        return;
+    } else if (double.TryParse(input1, out double out1) && double.TryParse(input2, out double out2) && double.TryParse(input3, out double out3))
+    {
+        num1 = out1;
+        num2 = out2;
+        num3 = out3;
+        
+        if (num1 > 5.0 || num1 < 0 || num2 > 5.0 || num2 < 0 || num3 > 5.0 || num3 < 0)
+        {
+            Console.WriteLine("\n++++++++++ Cannot be higher than 5.0 or less than 0 ++++++++++");
+            Thread.Sleep(3000); 
+            return;
+        }
+        
+    }
+    else
+    {   
+        Console.WriteLine("\n++++++++++Must be a number++++++++++");
+        Thread.Sleep(3000); 
+        return;
+    }
+
+    double average = (num1 + num2 + num3) / 3.0;
+
+    if (average < 3.0)
+    {
+        Console.WriteLine($"\nFailed with: {average}");
+        Thread.Sleep(3000);
+        return;
+    }
+    
+    Console.WriteLine($"\nPassed with: {average:F1}");
+    Thread.Sleep(3000);
+}
 
 StartMenu();
