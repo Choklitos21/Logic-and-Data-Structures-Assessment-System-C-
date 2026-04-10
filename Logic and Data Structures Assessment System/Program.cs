@@ -43,8 +43,10 @@ void StartMenu()
                 NumericalAnalysis();
                 break;
             case "6":
+                TaskManagement();
                 break;
             case "7":
+                ArraysAndSearch();
                 break;
             case "8":
                 break;
@@ -271,7 +273,7 @@ void TaskManagement()
             case "1":
                 foreach (var task in taskList)
                 {
-                    Console.WriteLine($"\n***Task***\nDescription: {task}");
+                    Console.WriteLine($"\n***Task with ID: {taskList.IndexOf(task)}***\nDescription: {task}");
                 }
                 break;
             case "2":
@@ -282,9 +284,23 @@ void TaskManagement()
                     Console.WriteLine("Cannot be empty: ");
                     newTask = Console.ReadLine() ?? "";
                 }
+                taskList.Add(newTask);
                 break;
             case "3":
-                Console.WriteLine("");
+                Console.WriteLine("Type the ID of the task to delete: ");
+                int id;
+                while (!int.TryParse(Console.ReadLine(), out id))
+                {
+                    Console.WriteLine("Type only numbers: ");
+                }
+
+                if ((taskList.Count + 1) < id)
+                {
+                    Console.WriteLine("ID not found in the list");
+                }
+                
+                taskList.RemoveAt(id);
+                Console.WriteLine("Task deleted successfully");
                 break;
             case "0":
                 Console.WriteLine("Out from Task Management");
@@ -295,8 +311,32 @@ void TaskManagement()
                 break;
         }
     }
+}
 
+// Level 7
+void ArraysAndSearch()
+{
+    string[] cities = new string[] { "medellin", "bogota", "cali", "barranquilla", "cartagena" };
+    
+    Console.WriteLine("Type the name of a city to search: ");
+    string city = Console.ReadLine() ?? "";
+    while ( city == "")
+    {
+        Console.WriteLine("Cannot be empty: ");
+        city = Console.ReadLine() ?? "";
+    }
 
+    for (int i = 0; i < cities.Length; i++)
+    {
+        if (city == cities[i])
+        {
+            Console.WriteLine("City found!");
+            return;
+        }
+    }
+
+    Console.WriteLine("City not found :c");
+    
 }
 
 StartMenu();
