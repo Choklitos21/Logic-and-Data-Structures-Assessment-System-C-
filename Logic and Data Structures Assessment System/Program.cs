@@ -34,6 +34,7 @@ void StartMenu()
                 AverageGrade();
                 break;
             case "3":
+                JoinStrings();
                 break;
             case "4":
                 break;
@@ -91,7 +92,6 @@ void AddingTwoNumbers()
     Thread.Sleep(3000); 
 }
 
-
 void AverageGrade()
 {
     double num1;
@@ -144,6 +144,45 @@ void AverageGrade()
     
     Console.WriteLine($"\nPassed with: {average:F1}");
     Thread.Sleep(3000);
+}
+
+void JoinStrings()
+{
+    Console.Write("\nType your first name: ");
+    string? name= Console.ReadLine();
+    
+    Console.Write("\nType your last name: ");
+    string? lastName = Console.ReadLine();
+
+    if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(lastName))
+    {
+        Console.WriteLine("Don't leave empty the fields");
+        Thread.Sleep(3000);
+        return;
+    }
+    
+    Console.WriteLine($"Hi " + name + " " + lastName + "\nHave a good day!");
+    Thread.Sleep(3000);
+}
+
+void Calculator()
+{
+    double num1;
+    double num2;
+    
+    Console.Write("\nSelect an operation\n| + (add)\n| - (subtract)\n| * (multiply)\n| / (divide)\n| Choose: ");
+    string? operation = Console.ReadLine();
+    
+    Console.Write("\nType the first number: ");
+    string? input1 = Console.ReadLine();
+    
+    Console.Write("\nType the second number: ");
+    string? input2 = Console.ReadLine();
+
+    if (double.TryParse(input1, out double out1))
+    {
+        
+    }
 }
 
 StartMenu();
