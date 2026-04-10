@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-const string menu = @"
+﻿const string menu = @"
 --- Technical Training Center ---
 
 Level 1: Summation and Numerical Validation
@@ -12,7 +10,7 @@ Level 6: Task Management (String Lists)
 Level 7: Arrays and Searching
 Level 8: Object-Oriented Programming (Classes)
 Level 9: Object CRUD (Object Lists)
-Option 10: Exit
+Option 0: Exit
 
 Select a level to begin: ";
 
@@ -49,10 +47,9 @@ void StartMenu()
                 ArraysAndSearch();
                 break;
             case "8":
+                ObjectCollections();
                 break;
-            case "9":
-                break;
-            case "10":
+            case "0":
                 flag = false;
                 Console.WriteLine("\n++++++++++Good bye! C: ++++++++++");
                 break;
@@ -254,9 +251,9 @@ void TaskManagement()
     const string taskMenu = @"
     --- Technical Training Center ---
 
-    Level 1: List all tasks
-    Level 2: Add a new Task
-    Level 3: Delete a Task by ID
+    Option 1: List all tasks
+    Option 2: Add a new Task
+    Option 3: Delete a Task by ID
     Option 0: Exit Task Management menu
 
     Select an option: ";
@@ -339,4 +336,104 @@ void ArraysAndSearch()
     
 }
 
+// Level 8
+void ObjectCollections()
+{
+    List<Student.Student> studentsList = new List<Student.Student>();
+
+    const string studentsMenu = @"
+    --- Technical Training Center ---
+
+    Option 1: Register a Students
+    Option 2: List all Students
+    Option 3: Delete a Student
+    Option 0: Exit Students menu
+
+    Select an option: ";
+
+    bool studentsFlag = true;
+    while (studentsFlag)
+    {
+        Console.WriteLine(studentsMenu);
+        string option = Console.ReadLine() ?? "";
+        while (option == "")
+        {
+            Console.WriteLine("Cannot be empty: ");
+            option = Console.ReadLine() ?? "";
+        }
+
+        switch (option)
+        {
+            case "1":
+                Console.WriteLine("What's the student name?: ");
+                string name = Console.ReadLine() ?? "";
+                while (name == "")
+                {
+                    Console.WriteLine("Cannot be empty: ");
+                    name = Console.ReadLine() ?? "";
+                }
+                
+                Console.WriteLine("What's his/her age?: ");
+                int age;
+                while (!int.TryParse(Console.ReadLine(), out age))
+                {
+                    Console.WriteLine("Cannot be empty and must be a number");
+                }
+                
+                studentsList.Add(new Student.Student(name, age));
+                Console.WriteLine("Student registered successfully!");
+                break;
+            case "2":
+                foreach (var student in studentsList)
+                {
+                    student.ShowStudent();
+                }
+                break;
+            case "3":
+                Console.WriteLine("Type the name of the Student you wish to remove: ");
+                string removeName = Console.ReadLine() ?? "";
+                bool found = false;
+                foreach (var student in studentsList)
+                {
+                    if (student.Name.ToLower() == removeName.ToLower())
+                    {
+                        studentsList.Remove(student);
+                        Console.WriteLine("Student removed successfully!");
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) Console.WriteLine("Student not found, no one was removed");
+                break;
+            case "0":
+                Console.WriteLine("Exit Students menu");
+                studentsFlag = false;
+                break;
+            default:
+                Console.WriteLine("");
+                break;
+        }
+    }
+}
+
 StartMenu();
+
+namespace Student
+{
+    public class Student
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+
+        public Student(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+
+        public void ShowStudent()
+        {
+            Console.WriteLine($"***Student***\nName: {Name}\nAge: {Age}");
+        }
+    }
+}

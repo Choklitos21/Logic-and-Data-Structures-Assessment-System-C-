@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Logic and Data Structures Assessment System")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04c7ff63eb5ea366978625b81d208b15372fa1c7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78a5ca5c6b5bf749534305edfe73f5e47f8688e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Logic and Data Structures Assessment System")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Logic and Data Structures Assessment System")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
